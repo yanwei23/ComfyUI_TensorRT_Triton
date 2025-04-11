@@ -6,6 +6,7 @@ Triton server搭建：
 4.	model_repository/model_name/config.pbtxt大多数情况不需要修改，不同模型可以重复配置一份，有lora需要单独配置，参考（https://github.com/triton-inference-server/tutorials/blob/17331012af74eab68ad7c86d8a4ae494272ca4f7/Popular_Models_Guide/Llava1.5/model_repository/tensorrt_llm/config.pbtxt）
 5.	从ngc上下载triton server镜像，例子使用的是nvcr.io/nvidia/tritonserver:25.01-py3。不同版本可能会有一些依赖兼容问题。
 容器参考启动命令：docker run -itd --gpus all --net=host --ipc=host --shm-size=2g -v /data/weyan/:/myworkspace nvcr.io/nvidia/tritonserver:25.01-py3 /bin/bash
+Tritonserver启动参考命令：tritonserver --model-repository /myworkspace/model_repository/ --model-control-mode explicit --load-model sdxl_base
 
 ComfyUI Node：
 将tensorrt_client.py放入custom_node对应的custom_nodes/ComfyUI_TensorRT文件夹下。__init__.py也覆盖ComfyUI_TensorRT或对应新增TensorRTClient的代码。
